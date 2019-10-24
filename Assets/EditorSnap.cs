@@ -4,27 +4,36 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 [SelectionBase]
+[RequireComponent(typeof(Waypoint))]
 public class EditorSnap : MonoBehaviour
 {
-    [SerializeField] [Tooltip("How far the object will snap to in the editor")] float gridSize = 10f;
-    [SerializeField] float yPos = 0f;
     TextMesh textMesh;
-    //string xCoord, zCoord;
+    Vector3 snapPos;
+    Waypoint waypoint;
 
     void Awake()
     {
         textMesh = GetComponentInChildren<TextMesh>();
+        waypoint = GetComponent<Waypoint>();
     }
 
     void Update()
     {
-        Vector3 snapPos;
-        snapPos.x = Mathf.RoundToInt(transform.position.x / gridSize) * gridSize;
-        snapPos.y = yPos;
-        snapPos.z = Mathf.RoundToInt(transform.position.z / gridSize) * gridSize;
-    
-        transform.position = snapPos;
+        SnapToGrid();
+        UpdateLabel(snapPos);
+    }
 
+    private void SnapToGrid()
+    {
+        int gridSize = waypoint.GetGridSize();
+        snapPos.x = waypoint.GetGridPos().x * 10f;
+        snapPos.y = waypoint.GetYPos();
+        snapPos.z = waypoint.GetGridPos().y * 10f;
+        transform.position = snapPos;
+    }
+
+    private void UpdateLabel(Vector3 snapPos)
+    {
         string coordLabel = snapPos.x / 10f + "," + snapPos.z / 10f;
         textMesh.text = coordLabel;
         gameObject.name = coordLabel;
