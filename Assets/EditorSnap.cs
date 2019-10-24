@@ -25,6 +25,8 @@ public class EditorSnap : MonoBehaviour
     
         transform.position = snapPos;
 
-        textMesh.text = snapPos.x / 10f + "," + snapPos.z / 10f;
+        string coordLabel = snapPos.x / 10f + "," + snapPos.z / 10f;
+        textMesh.text = coordLabel;
+        gameObject.name = coordLabel;
     }
 }
