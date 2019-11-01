@@ -23,12 +23,7 @@ public class Pathfinder : MonoBehaviour
 
     void Start()
     {
-        isExploring = true;
-        LoadWaypoints();
-        ColorPath();
-        FindPath();
-        //return path
-        PrintPath();
+        
     }
 
     private void LoadWaypoints()
@@ -112,7 +107,7 @@ public class Pathfinder : MonoBehaviour
                 queue.Enqueue(neighbor);
                 neighbor.isExplored = true;
                 neighbor.exploredFrom = center;
-                print("Queueing " + neighbor);
+                //print("Queueing " + neighbor);
 
                 //check destination here?
                 if (checkDestination(neighbor))
@@ -134,6 +129,16 @@ public class Pathfinder : MonoBehaviour
 
         //add starting position
         path.Insert(0, startWaypoint);
+    }
+
+    public List<Waypoint> GetFinalPath()
+    {
+        isExploring = true;
+        LoadWaypoints();
+        ColorPath();
+        FindPath();
+        //PrintPath();
+        return path;
     }
 
     private void PrintPath()
