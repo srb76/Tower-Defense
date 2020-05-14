@@ -133,6 +133,7 @@ public class Pathfinder : MonoBehaviour
         //ColorPath();
         FindPath();
         //PrintPath();
+
         return path;
     }
 

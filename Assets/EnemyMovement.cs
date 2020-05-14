@@ -19,7 +19,7 @@ public class EnemyMovement : MonoBehaviour
     {
         travelling = false;
         Pathfinder pathfinder = FindObjectOfType<Pathfinder>();
-        path = pathfinder.GetFinalPath();
+        path = new List<Waypoint>(pathfinder.GetFinalPath());
         StartCoroutine(CheckForNextWaypoint());
     }
 
@@ -33,7 +33,6 @@ public class EnemyMovement : MonoBehaviour
             startTime = Time.time;
             initPos = transform.position;
             journeyLength = Vector3.Distance(transform.position, path[0].transform.position);
-            print("Start time: " + startTime + " Journey length: " + journeyLength);
         }
     }
 
