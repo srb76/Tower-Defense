@@ -21,11 +21,6 @@ public class Pathfinder : MonoBehaviour
 
     bool isExploring = false;
 
-    void Start()
-    {
-        
-    }
-
     private void LoadWaypoints()
     {
         var waypoints = FindObjectsOfType<Waypoint>(); //array of waypoints
@@ -101,7 +96,7 @@ public class Pathfinder : MonoBehaviour
         if (grid.ContainsKey(exploringPos))
         {
             Waypoint neighbor = grid[exploringPos];
-            neighbor.SetTopColor(Color.blue);
+            //neighbor.SetTopColor(Color.blue);
             if (!neighbor.isExplored || queue.Contains(neighbor))
             {
                 queue.Enqueue(neighbor);
@@ -135,7 +130,7 @@ public class Pathfinder : MonoBehaviour
     {
         isExploring = true;
         LoadWaypoints();
-        ColorPath();
+        //ColorPath();
         FindPath();
         //PrintPath();
         return path;
