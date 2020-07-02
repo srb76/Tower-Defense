@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField] Waypoint attached;
+    [SerializeField] Waypoint placement;
+    [SerializeField] Transform target;
+    [SerializeField] Transform gun;
     // Start is called before the first frame update
     void Start()
     {
         //set location (temporary)
-        transform.position = attached.transform.position;
+        transform.position = placement.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //look for target if none
+        if(target==null){
+
+        }
+
+        //look at current target
+        gun.LookAt(target);
     }
 }
