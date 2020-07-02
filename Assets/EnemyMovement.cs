@@ -8,7 +8,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     List<Waypoint> path;
-    [SerializeField] [Tooltip("In seconds")] float travelDelay = 1f;
+    [SerializeField] [Tooltip("In seconds")] float travelDelay = .1f;
     [SerializeField] float speed = 10f;
     bool travelling;
     float startTime;
